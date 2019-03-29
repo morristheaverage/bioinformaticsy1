@@ -101,8 +101,8 @@ for j in range(len(seq2)):
             elif L == maxScore:
                 scoring[j][i] = L
                 backtrack[j][i] = 'L'
-                if i > j:
-                    print("contradiction")
+                if i < j:
+                    print("contradiction at (" + str(i) + ", " + str(j) + ")")
             else:   #U == maxScore
                 scoring[j][i] = U
                 backtrack[j][i] = 'U'
