@@ -115,6 +115,11 @@ for j in range(len(seq2)):
                     if charScore > 0:
                         print("ouchie")
 
+stop = time.time()
+time_taken=stop-start
+print('Time taken: '+str(time_taken))
+start = time.time()
+
 #build alignment
 i = len(seq1) - 1
 j = len(seq2) - 1
