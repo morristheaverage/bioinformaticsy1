@@ -92,23 +92,28 @@ for j in range(len(seq2)):
             charScore =  c(seq1[i], seq2[j])
             D = charScore + scoring[j-1][i-1]
 
-            L = scoring[j][i-1] + GAP
-            U = scoring[j-1][i] + GAP
-            maxScore = max(D, L, U)
-
-            if D == maxScore:
+            if charScore > 0:
                 scoring[j][i] = D
                 backtrack[j][i] = 'D'
-            elif L == maxScore:
-                scoring[j][i] = L
-                backtrack[j][i] = 'L'
-                if charScore > 0:
-                    print("oof")
-            else:   #U == maxScore
-                scoring[j][i] = U
-                backtrack[j][i] = 'U'
-                if charScore > 0:
-                    print("ouchie")
+            else:
+
+                L = scoring[j][i-1] + GAP
+                U = scoring[j-1][i] + GAP
+                maxScore = max(D, L, U)
+
+                if D == maxScore:
+                    scoring[j][i] = D
+                    backtrack[j][i] = 'D'
+                elif L == maxScore:
+                    scoring[j][i] = L
+                    backtrack[j][i] = 'L'
+                    if charScore > 0:
+                        print("oof")
+                else:   #U == maxScore
+                    scoring[j][i] = U
+                    backtrack[j][i] = 'U'
+                    if charScore > 0:
+                        print("ouchie")
 
 #build alignment
 i = len(seq1) - 1
