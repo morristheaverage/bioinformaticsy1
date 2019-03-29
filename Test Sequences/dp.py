@@ -89,7 +89,8 @@ for j in range(len(seq2)):
 
         else:
             #calculate maximum score for cell
-            D = c(seq1[i], seq2[j]) + scoring[j-1][i-1]
+            charScore =  c(seq1[i], seq2[j])
+            D = charScore + scoring[j-1][i-1]
 
             L = scoring[j][i-1] + GAP
             U = scoring[j-1][i] + GAP
@@ -101,11 +102,13 @@ for j in range(len(seq2)):
             elif L == maxScore:
                 scoring[j][i] = L
                 backtrack[j][i] = 'L'
-                if i > j:
-                    print("contradiction")
+                if charScore > 0:
+                    print("oof")
             else:   #U == maxScore
                 scoring[j][i] = U
                 backtrack[j][i] = 'U'
+                if charScore > 0:
+                    print("ouchie")
 
 #build alignment
 i = len(seq1) - 1
