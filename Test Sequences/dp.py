@@ -91,17 +91,9 @@ for j in range(len(seq2)):
             #calculate maximum score for cell
             D = c(seq1[i], seq2[j]) + scoring[j-1][i-1]
 
-            if i < j:   #only D or L possible
-                L = scoring[j][i-1] + GAP
-                maxScore = max(D, L)
-            elif i > j:
-                U = scoring[j-1][i] + GAP
-                L = U - 1 #to ensure if else statements beneath run without error
-                maxScore = max(D, U)
-            else:
-                L = scoring[j][i-1] + GAP
-                U = scoring[j-1][i] + GAP
-                maxScore = max(D, L, U)
+            L = scoring[j][i-1] + GAP
+            U = scoring[j-1][i] + GAP
+            maxScore = max(D, L, U)
 
             if D == maxScore:
                 scoring[j][i] = D
@@ -109,6 +101,8 @@ for j in range(len(seq2)):
             elif L == maxScore:
                 scoring[j][i] = L
                 backtrack[j][i] = 'L'
+                if i > j:
+                    print("contradiction")
             else:   #U == maxScore
                 scoring[j][i] = U
                 backtrack[j][i] = 'U'
